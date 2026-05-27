@@ -1,220 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Gaurav's Job Applications</title>
 <style>
   :root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --surface2: #22263a;
-    --border: #2e3348;
-    --text: #e2e8f0;
-    --muted: #8892a4;
-    --accent: #6366f1;
-    --green: #22c55e;
-    --yellow: #eab308;
-    --red: #ef4444;
-    --blue: #3b82f6;
-    --purple: #a855f7;
-    --radius: 10px;
+    --bg:#0f1117; --surface:#1a1d27; --surface2:#22263a; --border:#2e3348;
+    --text:#e2e8f0; --muted:#8892a4; --accent:#6366f1;
+    --green:#22c55e; --yellow:#eab308; --red:#ef4444;
+    --blue:#3b82f6; --purple:#a855f7; --radius:10px;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
-    min-height: 100vh;
-    padding: 0 0 60px;
-  }
-  header {
-    background: linear-gradient(135deg, #1e1f3a 0%, #12131f 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 28px 32px 24px;
-  }
-  header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: #fff;
-  }
-  header p {
-    color: var(--muted);
-    margin-top: 4px;
-    font-size: 13px;
-  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;min-height:100vh;padding-bottom:60px;}
 
-  .main { max-width: 1300px; margin: 0 auto; padding: 28px 24px 0; }
+  /* ── Header ── */
+  header{background:linear-gradient(135deg,#1e1f3a 0%,#12131f 100%);border-bottom:1px solid var(--border);padding:20px 16px 18px;}
+  header h1{font-size:20px;font-weight:700;color:#fff;}
+  header p{color:var(--muted);margin-top:4px;font-size:12px;}
 
-  /* Stats cards */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 14px;
-    margin-bottom: 28px;
-  }
-  .stat {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px 16px;
-  }
-  .stat-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
-  .stat-value { font-size: 28px; font-weight: 700; line-height: 1; }
-  .stat-value.green  { color: var(--green); }
-  .stat-value.yellow { color: var(--yellow); }
-  .stat-value.red    { color: var(--red); }
-  .stat-value.blue   { color: var(--blue); }
-  .stat-value.purple { color: var(--purple); }
-  .stat-value.white  { color: #fff; }
+  /* ── Main wrapper ── */
+  .main{max-width:1300px;margin:0 auto;padding:20px 16px 0;}
 
-  /* Controls */
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 340px; }
-  .search-wrap input {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 13px;
-    padding: 9px 12px 9px 36px;
-    outline: none;
-    transition: border-color .15s;
-  }
-  .search-wrap input:focus { border-color: var(--accent); }
-  .search-wrap .icon {
-    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
-    color: var(--muted); pointer-events: none;
-  }
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
-  .filter-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 12px;
-    padding: 6px 14px;
-    transition: all .15s;
-  }
-  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
-  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  /* ── Stats grid ── */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 12px 12px;}
+  .stat-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+  .stat-value{font-size:24px;font-weight:700;line-height:1;}
+  .stat-value.green{color:var(--green);} .stat-value.yellow{color:var(--yellow);}
+  .stat-value.red{color:var(--red);}     .stat-value.blue{color:var(--blue);}
+  .stat-value.purple{color:var(--purple);} .stat-value.white{color:#fff;}
 
-  /* Table */
-  .table-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
+  /* ── Controls ── */
+  .controls{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+  .search-wrap{position:relative;width:100%;}
+  .search-wrap input{
+    width:100%;background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;color:var(--text);font-size:14px;
+    padding:10px 12px 10px 38px;outline:none;transition:border-color .15s;
   }
-  table { width: 100%; border-collapse: collapse; }
-  thead th {
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .5px;
-    padding: 11px 14px;
-    text-align: left;
-    text-transform: uppercase;
-    user-select: none;
-    white-space: nowrap;
+  .search-wrap input:focus{border-color:var(--accent);}
+  .search-wrap .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
+  .filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch;}
+  .filters::-webkit-scrollbar{display:none;}
+  .filter-btn{
+    background:var(--surface);border:1px solid var(--border);border-radius:20px;
+    color:var(--muted);cursor:pointer;font-size:12px;padding:7px 16px;
+    white-space:nowrap;flex-shrink:0;transition:all .15s;
   }
-  thead th:hover { color: var(--text); }
-  thead th .sort-icon { opacity: .35; margin-left: 4px; font-style: normal; }
-  thead th.asc  .sort-icon { opacity: 1; }
-  thead th.desc .sort-icon { opacity: 1; }
-  tbody tr {
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: background .1s;
-  }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: var(--surface2); }
-  tbody tr.expanded { background: var(--surface2); }
-  td { padding: 12px 14px; vertical-align: top; }
-  .cell-title { font-weight: 500; color: #fff; }
-  .cell-title a { color: inherit; text-decoration: none; }
-  .cell-title a:hover { color: var(--accent); }
-  .cell-company { color: var(--text); }
-  .cell-location { color: var(--muted); font-size: 12px; }
-  .cell-salary { color: var(--muted); font-size: 12px; }
+  .filter-btn:hover{border-color:var(--accent);color:var(--text);}
+  .filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-  .score {
-    display: inline-block;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 700;
-    min-width: 36px;
-    padding: 2px 8px;
-    text-align: center;
-  }
-  .score.high   { background: rgba(34,197,94,.15);  color: var(--green);  }
-  .score.mid    { background: rgba(234,179,8,.15);   color: var(--yellow); }
-  .score.low    { background: rgba(239,68,68,.15);   color: var(--red);    }
+  /* ── Shared badges/pills ── */
+  .score{display:inline-block;border-radius:6px;font-size:13px;font-weight:700;min-width:36px;padding:2px 8px;text-align:center;}
+  .score.high{background:rgba(34,197,94,.15);color:var(--green);}
+  .score.mid{background:rgba(234,179,8,.15);color:var(--yellow);}
+  .score.low{background:rgba(239,68,68,.15);color:var(--red);}
+  .badge{border-radius:12px;font-size:11px;font-weight:600;letter-spacing:.3px;padding:3px 10px;text-transform:capitalize;white-space:nowrap;}
+  .badge.applied{background:rgba(34,197,94,.15);color:var(--green);}
+  .badge.skipped{background:rgba(234,179,8,.15);color:var(--yellow);}
+  .badge.failed{background:rgba(239,68,68,.15);color:var(--red);}
+  .badge.pending{background:rgba(99,102,241,.15);color:var(--accent);}
+  .badge.dry_run{background:rgba(59,130,246,.15);color:var(--blue);}
+  .source-tag{background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:11px;padding:2px 7px;}
 
-  .badge {
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .3px;
-    padding: 3px 10px;
-    text-transform: capitalize;
-    white-space: nowrap;
-  }
-  .badge.applied { background: rgba(34,197,94,.15);  color: var(--green);  }
-  .badge.skipped { background: rgba(234,179,8,.15);   color: var(--yellow); }
-  .badge.failed  { background: rgba(239,68,68,.15);   color: var(--red);    }
-  .badge.pending { background: rgba(99,102,241,.15);  color: var(--accent); }
+  /* ── Detail panel (shared) ── */
+  .detail-inner{background:#13151f;border-top:1px solid var(--border);padding:14px 16px;}
+  .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .field{margin-bottom:10px;}
+  .field-label{color:var(--muted);font-size:10px;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;}
+  .field-value{color:var(--text);font-size:13px;word-break:break-word;}
+  .field-value a{color:var(--accent);text-decoration:none;}
+  .field-value a:hover{text-decoration:underline;}
 
-  .source-tag {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--muted);
-    font-size: 11px;
-    padding: 2px 7px;
-  }
+  .no-results{color:var(--muted);padding:40px;text-align:center;}
+  footer{color:var(--muted);font-size:12px;padding:14px 16px 0;max-width:1300px;margin:0 auto;}
 
-  /* Expanded detail row */
-  .detail-row td { padding: 0; }
-  .detail-inner {
-    background: #13151f;
-    border-top: 1px solid var(--border);
-    padding: 16px 18px;
+  /* ══════════════════════════════════════════
+     DESKTOP TABLE  (≥ 640 px)
+  ══════════════════════════════════════════ */
+  .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  table{width:100%;border-collapse:collapse;}
+  thead th{
+    background:var(--surface2);border-bottom:1px solid var(--border);color:var(--muted);
+    cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.5px;
+    padding:11px 14px;text-align:left;text-transform:uppercase;user-select:none;white-space:nowrap;
   }
-  .detail-inner h4 { color: var(--muted); font-size: 11px; letter-spacing: .5px; margin-bottom: 8px; text-transform: uppercase; }
-  .detail-inner p  { color: var(--text); font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
-  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .detail-grid .field { margin-bottom: 12px; }
-  .field-label { color: var(--muted); font-size: 11px; margin-bottom: 3px; text-transform: uppercase; letter-spacing: .4px; }
-  .field-value { color: var(--text); font-size: 13px; }
-  .field-value a { color: var(--accent); text-decoration: none; }
-  .field-value a:hover { text-decoration: underline; }
+  thead th:hover{color:var(--text);}
+  thead th .si{opacity:.35;margin-left:4px;font-style:normal;}
+  thead th.asc .si, thead th.desc .si{opacity:1;}
+  tbody tr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;}
+  tbody tr:last-child{border-bottom:none;}
+  tbody tr:hover{background:var(--surface2);}
+  tbody tr.expanded{background:var(--surface2);}
+  td{padding:11px 14px;vertical-align:top;}
+  .cell-title{font-weight:500;color:#fff;}
+  .cell-title a{color:inherit;text-decoration:none;}
+  .cell-title a:hover{color:var(--accent);}
+  .cell-sub{color:var(--muted);font-size:12px;margin-top:2px;}
+  .detail-row td{padding:0;}
 
-  .no-results {
-    color: var(--muted);
-    padding: 48px;
-    text-align: center;
+  /* ══════════════════════════════════════════
+     MOBILE CARDS  (< 640 px)
+  ══════════════════════════════════════════ */
+  .card-list{display:none;flex-direction:column;gap:10px;}
+  .card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);overflow:hidden;cursor:pointer;
   }
+  .card-main{padding:14px;}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;}
+  .card-title{font-weight:600;color:#fff;font-size:15px;line-height:1.3;flex:1;}
+  .card-company{color:var(--muted);font-size:13px;margin-bottom:8px;}
+  .card-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .card-detail{background:#13151f;border-top:1px solid var(--border);padding:14px;display:none;}
+  .card-detail .detail-grid{grid-template-columns:1fr;}
+  .card.open .card-detail{display:block;}
+  .card-chevron{color:var(--muted);font-size:16px;flex-shrink:0;transition:transform .2s;}
+  .card.open .card-chevron{transform:rotate(180deg);}
 
-  footer {
-    color: var(--muted);
-    font-size: 12px;
-    padding: 16px 24px 0;
-    max-width: 1300px;
-    margin: 0 auto;
+  /* ── Responsive breakpoints ── */
+  @media(min-width:640px){
+    header{padding:28px 32px 24px;}
+    header h1{font-size:22px;}
+    .main{padding:28px 24px 0;}
+    .stats{grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:28px;}
+    .stat{padding:18px 16px 16px;}
+    .stat-value{font-size:28px;}
+    .controls{flex-direction:row;align-items:center;gap:12px;margin-bottom:20px;}
+    .search-wrap{max-width:340px;}
+    .search-wrap input{font-size:13px;padding:9px 12px 9px 36px;}
+    .table-wrap{display:block;}
+    .card-list{display:none !important;}
+  }
+  @media(max-width:639px){
+    .table-wrap{display:none;}
+    .card-list{display:flex;}
   }
 </style>
 </head>
@@ -222,7 +143,7 @@
 <header>
   <div style="max-width:1300px;margin:0 auto;">
     <h1>Gaurav's Job Applications</h1>
-    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-05-27 09:09 UTC</p>
+    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-05-27 04:33 AM CDT</p>
   </div>
 </header>
 
@@ -232,33 +153,337 @@
   <div class="controls">
     <div class="search-wrap">
       <span class="icon">🔍</span>
-      <input id="searchInput" placeholder="Search title, company, location…" oninput="applyFilters()" />
+      <input id="searchInput" placeholder="Search title, company…" oninput="applyFilters()"/>
     </div>
     <div class="filters" id="filterBtns"></div>
   </div>
 
+  <!-- Desktop table -->
   <div class="table-wrap">
-    <table id="appTable">
+    <table>
       <thead>
         <tr>
-          <th data-col="title"       onclick="sortBy('title')">Role <i class="sort-icon">↕</i></th>
-          <th data-col="company"     onclick="sortBy('company')">Company <i class="sort-icon">↕</i></th>
-          <th data-col="location"    onclick="sortBy('location')">Location <i class="sort-icon">↕</i></th>
-          <th data-col="match_score" onclick="sortBy('match_score')">Score <i class="sort-icon">↕</i></th>
-          <th data-col="status"      onclick="sortBy('status')">Status <i class="sort-icon">↕</i></th>
-          <th data-col="source"      onclick="sortBy('source')">Source <i class="sort-icon">↕</i></th>
-          <th data-col="created_at"  onclick="sortBy('created_at')">Seen <i class="sort-icon">↕</i></th>
+          <th data-col="title"       onclick="sortBy('title')">Role <i class="si">↕</i></th>
+          <th data-col="company"     onclick="sortBy('company')">Company <i class="si">↕</i></th>
+          <th data-col="location"    onclick="sortBy('location')">Location <i class="si">↕</i></th>
+          <th data-col="match_score" onclick="sortBy('match_score')">Score <i class="si">↕</i></th>
+          <th data-col="status"      onclick="sortBy('status')">Status <i class="si">↕</i></th>
+          <th data-col="source"      onclick="sortBy('source')">Source <i class="si">↕</i></th>
+          <th data-col="created_at"  onclick="sortBy('created_at')">Seen <i class="si">↕</i></th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
   </div>
+
+  <!-- Mobile cards -->
+  <div class="card-list" id="cardList"></div>
 </div>
 
 <footer id="footer"></footer>
 
 <script>
-const ALL_DATA   = [
+const ALL_DATA = [
+  {
+    "id": 23,
+    "title": "Senior Software Engineer - Bits AI SRE",
+    "company": "Datadog",
+    "location": "Boston, New York, Remote - British Columbia",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 17,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7899164/?gh_jid=7899164",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:31:00.824492",
+    "notes": "This role explicitly requires at least 5 years of professional experience and senior-level backend engineering skills, which a new-grad candidate graduating in May 2026 fundamentally cannot meet. While Gaurav shows promising AI integration work in hackathon projects and relevant full-stack skills, these are far removed from the production-quality, enterprise-scale systems Datadog requires. The role demands deep expertise in Go, LLM productionization, SRE practices, and Kubernetes that simply cannot be substituted by academic coursework or hackathon projects."
+  },
+  {
+    "id": 22,
+    "title": "Senior Software Engineer - Backend",
+    "company": "Datadog",
+    "location": "Bordeaux, EMEA, Lisbon, Lyon, Madrid, Montpellier, Nantes, Paris, Paris 27 RdC, Remote, Remote - France, Remote - Germany, Remote - Ireland, Sophia Antipolis, Tel Aviv",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 23,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/4599148/?gh_jid=4599148",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:30:52.310511",
+    "notes": "This is a Senior Software Engineer role explicitly requiring the ability to design architecture at high scale, solve production bottlenecks, and own services in a high-growth environment \u2014 competencies that require years of professional experience Gaurav simply does not yet have. While Gaurav demonstrates solid foundational skills in Java, Python, JavaScript, and has shown initiative through hackathon projects and AI integration, these are student-level projects that do not approximate the scale, complexity, or production ownership Datadog expects at the senior level. Additionally, the role is based in EMEA/France/remote-EU regions, adding a geographic mismatch for a candidate located in Monroe, LA."
+  },
+  {
+    "id": 21,
+    "title": "Senior Software Engineer - Backend",
+    "company": "Datadog",
+    "location": "Bordeaux, EMEA, Lisbon, Lyon, Madrid, Montpellier, Nantes, Paris, Paris 27 RdC, Remote, Remote - France, Remote - Germany, Remote - Ireland, Sophia Antipolis, Tel Aviv",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 23,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7259387/?gh_jid=7259387",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:30:38.997368",
+    "notes": "This is a Senior Software Engineer role at Datadog, a company operating at massive scale (trillions of data points/day), requiring proven experience designing and scaling production backend systems \u2014 a level Gaurav fundamentally cannot meet as a new-grad student graduating in 2026. While he demonstrates solid foundational skills in Java, Python, and full-stack development through hackathon projects, there is a critical experience and seniority gap that no amount of coursework or project work can bridge for a senior role. The role explicitly demands high-scale architecture design, production ownership, and significant professional experience."
+  },
+  {
+    "id": 20,
+    "title": "Senior Software Engineer - Analytics Data Platform Lakehouse",
+    "company": "Datadog",
+    "location": "Boston, New York, Remote, Remote - British Columbia, Remote - California, Remote - Georgia, Remote - New York, Remote - Rhode Island, Remote - Tennessee, Remote - Virginia",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7925999/?gh_jid=7925999",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:30:30.077239",
+    "notes": "This is a Senior Software Engineer role explicitly requiring deep production-grade experience with Apache Iceberg, Trino, or Spark \u2014 ideally with open-source committer/PMC status \u2014 and experience operating petabyte-scale distributed data systems. Gaurav is a new-grad candidate (graduating May 2026) with no professional experience, no background in data lakehouse technologies, and projects scoped at hackathon/personal level. The level and domain mismatch is severe and fundamental."
+  },
+  {
+    "id": 19,
+    "title": "Senior Software Engineer - AI Code Gen - Agent Engineer",
+    "company": "Datadog",
+    "location": "Boston, New York, Remote - British Columbia",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 23,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7107875/?gh_jid=7107875",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:30:20.861454",
+    "notes": "This role explicitly requires a Senior Software Engineer with at least 5 years of professional experience who has shipped LLM-based systems to production \u2014 Gaurav is a new-grad candidate graduating in May 2026 with no professional work experience. While he has some LLM integration exposure through a hackathon project (CareerGenie), this is fundamentally incompatible with the seniority, depth of production systems knowledge, and specialized AI agent engineering expertise the role demands. The experience gap is a near-disqualifying structural mismatch."
+  },
+  {
+    "id": 18,
+    "title": "Senior Software Engineer (AI)",
+    "company": "Datadog",
+    "location": "Dublin, Lisbon, Lyon, Madrid, Paris, Paris 27 RdC, Paris 33RLF, Remote - France, Remote - Germany, Remote - Portugal, Tel Aviv",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 17,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7566827/?gh_jid=7566827",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:30:12.974929",
+    "notes": "This is a Senior Software Engineer role requiring 5+ years of professional experience with production AI systems, microservices, CI/CD pipelines, and observability infrastructure \u2014 none of which this candidate possesses. Gaurav is a graduating student with strong foundational skills and impressive hackathon projects, but his experience is entirely pre-professional and does not come close to the seniority, depth, or domain expertise the role demands. The AI work in CareerGenie is hackathon-level LLM integration, far removed from designing production deployment gates with precision/recall metrics and autonomous remediation systems."
+  },
+  {
+    "id": 17,
+    "title": "Senior Software Engineer (AI)",
+    "company": "Datadog",
+    "location": "Dublin, Lisbon, Lyon, Madrid, Paris, Paris 27 RdC, Paris 33RLF, Remote - France, Remote - Germany, Remote - Portugal, Tel Aviv",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 17,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7097751/?gh_jid=7097751",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:30:03.483575",
+    "notes": "This is a Senior Software Engineer role explicitly requiring at least 5 years of professional experience and a track record of shipping LLM-powered software to production \u2014 requirements Gaurav fundamentally cannot meet as a May 2026 new graduate. While he demonstrates genuine enthusiasm for AI (CareerGenie hackathon project) and solid foundational CS skills, his experience is entirely academic and hackathon-based, representing a multi-year gap in professional seniority. The role also demands deep backend engineering at scale, developer tooling expertise, and production AI systems knowledge that go far beyond his current profile."
+  },
+  {
+    "id": 16,
+    "title": "Senior Software Engineer (Agent Engineer) - AI Code Gen",
+    "company": "Datadog",
+    "location": "Dublin, Lisbon, Madrid, Paris, Paris 27 RdC, Paris 33RLF, Remote - France, Remote - Germany, Remote - Portugal, Tel Aviv",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 17,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7440341/?gh_jid=7440341",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:53.212403",
+    "notes": "This is a Senior Software Engineer role explicitly requiring at least 5 years of professional experience shipping LLM-based systems to production, which Gaurav fundamentally cannot meet as a graduating new-grad in 2026. While he shows genuine interest in AI through his CareerGenie hackathon project, the depth of LLM/agent engineering, large-scale systems knowledge, and developer tooling experience the role demands is far beyond what any new graduate can demonstrate. The role also targets engineers in European or Israeli locations with hybrid office culture expectations, adding a geographic mismatch."
+  },
+  {
+    "id": 15,
+    "title": "Senior Backend Software Engineer - Product Analytics",
+    "company": "Datadog",
+    "location": "Bordeaux, EMEA, Lisbon, Lyon, Madrid, Montpellier, Nantes, Paris, Paris 27 RdC, Remote, Remote - France, Remote - Germany, Remote - Ireland, Sophia Antipolis, Tel Aviv",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 17,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://careers.datadoghq.com/detail/7547361/?gh_jid=7547361",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:43.598021",
+    "notes": "This is a Senior Backend Software Engineer role explicitly requiring deep expertise in distributed systems, technical leadership, and a track record of delivering production-scale software \u2014 none of which a new-grad candidate can credibly demonstrate. Gaurav has foundational skills in Java and SQL that overlap with the job's technical stack, but the role demands seasoned professional experience (likely 5\u20138+ years implied by 'senior' and 'technical mentor' expectations) that he simply cannot meet. His hackathon and personal projects show promise but are not comparable to production-scale backend systems."
+  },
+  {
+    "id": 14,
+    "title": "Staff Backend Engineer (Ruby on Rails/AI), Verify",
+    "company": "Gitlab",
+    "location": "Remote, APAC; Remote, Canada; Remote, Ireland; Remote, Netherlands; Remote, United Kingdom; Remote, US; Remote, US-Southeast",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8448283002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:34.752371",
+    "notes": "This is a Staff-level backend engineering role requiring deep expertise in Ruby on Rails, CI/CD infrastructure, and large-scale AI system design \u2014 typically demanding 7-10+ years of senior professional experience. Gaurav is a new-grad candidate (graduating May 2026) with no professional work experience, no Ruby/Rails background, and no exposure to CI/CD systems or enterprise-scale infrastructure. While his hackathon AI project and full-stack skills show genuine promise, they do not come close to meeting the seniority, technical depth, or domain specialization this role demands."
+  },
+  {
+    "id": 13,
+    "title": "Staff Backend Engineer (Go), Software Supply Chain Security: Secrets Management",
+    "company": "Gitlab",
+    "location": "Remote, Canada; Remote, Ireland; Remote, Israel; Remote, Netherlands; Remote, United Kingdom; Remote, US",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 9,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8432235002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:24.337730",
+    "notes": "This is a Staff Engineer role requiring deep expertise in Go, secrets management, multi-tenant security architecture, and open source governance \u2014 typically 8-12+ years of professional experience. Gaurav is a new-grad candidate (graduating May 2026) with no professional experience, no Go knowledge, and no background in secrets management or supply chain security. The seniority gap alone is a near-insurmountable disqualifier."
+  },
+  {
+    "id": 12,
+    "title": "Staff Backend Engineer (Go), Continuous Delivery",
+    "company": "Gitlab",
+    "location": "Remote, India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 9,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8488961002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:16.181688",
+    "notes": "This is a Staff-level Backend Engineer role requiring deep professional experience in Go and distributed systems \u2014 a seniority level typically associated with 8-12+ years of industry experience. Gaurav is a new-grad candidate (May 2026) with no professional work experience, no Go background, and project work limited to hackathons and personal projects. The role's core requirements (Go, distributed systems, durable orchestration, CD platforms, technical leadership, on-call rotations) are entirely absent from the candidate's profile."
+  },
+  {
+    "id": 11,
+    "title": "Staff Backend Engineer, Gitlab Delivery: Upgrades",
+    "company": "Gitlab",
+    "location": "Remote, India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 10,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8463922002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:08.259349",
+    "notes": "This is a Staff Engineer role requiring deep expertise in Kubernetes, Helm, cloud-native deployments, and years of senior-level infrastructure/backend engineering experience \u2014 far beyond what a new-grad candidate can offer. The candidate's skills in React, JavaScript, Java, and basic Linux administration do not align with the specialized backend infrastructure and DevOps domain required. The location requirement (India) also does not match the candidate's location (Monroe, LA)."
+  },
+  {
+    "id": 10,
+    "title": "Staff Backend Engineer, Developer Experience",
+    "company": "Gitlab",
+    "location": "Remote, Canada; Remote, United Kingdom; Remote, US",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8490477002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:29:00.109004",
+    "notes": "This is a Staff-level Backend Engineering role explicitly requiring Ruby and Go expertise, cross-team technical leadership, and deep experience with CI/CD pipelines and developer experience platforms \u2014 none of which this new-grad candidate possesses. The candidate is a strong student with promising hackathon projects in JavaScript/React/Java, but is fundamentally mismatched in seniority level, primary tech stack, and the type of systems experience required. The role expects someone capable of leading culture shifts across six globally distributed engineering teams."
+  },
+  {
+    "id": 9,
+    "title": "Senior Backend Engineer (Ruby or Golang), Tenant Scale; Cells Infrastructure",
+    "company": "Gitlab",
+    "location": "Remote, APAC; Remote, Canada; Remote, EMEA; Remote, US",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8437148002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:28:50.646434",
+    "notes": "This is a Senior Backend Engineer role requiring deep expertise in Ruby or Golang, distributed systems, edge routing, and large-scale infrastructure \u2014 typically implying 5+ years of professional experience. Gaurav is a new-grad candidate (graduating May 2026) with coursework, hackathon projects, and foundational skills in Java, Python, and JavaScript/React, none of which map to the core required stack or seniority level. The role's responsibilities (topology services, tier-2 on-call, ADR authoring, cross-monolith collaboration at GitLab scale) are well beyond what can be demonstrated through student projects."
+  },
+  {
+    "id": 8,
+    "title": "Senior Backend Engineer (Ruby on Rails), Plan: Knowledge",
+    "company": "Gitlab",
+    "location": "Remote, Americas; Remote, APAC; Remote, EMEA",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 17,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8455304002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:28:42.353301",
+    "notes": "This role explicitly requires a Senior Backend Engineer with deep Ruby on Rails expertise \u2014 a language and framework entirely absent from the candidate's profile. Beyond the technology mismatch, GitLab's senior-level role implicitly demands 5+ years of professional backend engineering experience, whereas Gaurav is a new-grad (May 2026) with project and hackathon experience only. While his AI integration work on CareerGenie and full-stack JavaScript skills show genuine aptitude, they do not address the core Ruby/Rails backend requirement or the seniority bar."
+  },
+  {
+    "id": 7,
+    "title": "Senior Backend Engineer(Go), Continuous Delivery",
+    "company": "Gitlab",
+    "location": "Remote, India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8488966002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:28:34.571435",
+    "notes": "This role requires a Senior Backend Engineer with significant professional experience building production-grade distributed systems in Go \u2014 a language the candidate has no demonstrated experience with. The candidate is a new-grad (graduating May 2026) with project-based experience primarily in JavaScript/React and Java, which fundamentally does not meet the seniority, language, or systems depth requirements. Additionally, the role is restricted to India-based candidates, while the candidate is located in Monroe, LA."
+  },
+  {
+    "id": 6,
+    "title": "Senior Backend Engineer, Gitlab Delivery: Runway (Platform Engineering)",
+    "company": "Gitlab",
+    "location": "NA",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 8,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8324132002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:28:25.458465",
+    "notes": "This is a Senior Backend/Platform Engineer role requiring deep expertise in Kubernetes cluster management, ArgoCD GitOps workflows, Terraform, and cloud infrastructure \u2014 areas the candidate has no demonstrated experience in. Gaurav is a new-grad (May 2026) with project-level experience in web development and basic Linux/networking, which does not come close to the 5+ years of production infrastructure experience this senior role demands. The seniority level and domain specialization represent fundamental mismatches."
+  },
+  {
+    "id": 5,
+    "title": "Senior Backend Engineer (C), Tenant Scale: Git",
+    "company": "Gitlab",
+    "location": "Remote, India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8497791002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:28:18.231489",
+    "notes": "This role requires a Senior Backend Engineer with deep expertise in C (Git's implementation language), Go (Gitaly), and low-level systems programming, plus demonstrated experience contributing to upstream open source projects at scale \u2014 none of which appear in the candidate's profile. The candidate is a new-grad (May 2026) with projects in JavaScript/React/Java, which are entirely misaligned with the C/Go/Git internals stack this role demands. Additionally, the posting targets candidates in India while the candidate is located in Louisiana, USA, adding a further location mismatch."
+  },
+  {
+    "id": 4,
+    "title": "Senior Backend Engineer, Analytics Instrumentation (Golang)",
+    "company": "Gitlab",
+    "location": "NA",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 8,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8451512002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:28:10.104304",
+    "notes": "This is a Senior Backend Engineer role requiring deep Golang expertise and significant professional experience architecting large-scale instrumentation systems \u2014 neither of which the candidate possesses. Gaurav is a new-grad with no professional work experience, no Golang exposure, and project-level work that, while impressive for a student, is far below the complexity and scale demanded here. The role explicitly requires leading architectural decisions for company-wide infrastructure and managing on-call for billing-critical systems."
+  },
   {
     "id": 3,
     "title": "Intermediate Backend Engineer (C), Tenant Scale: Git",
@@ -305,177 +530,164 @@ const ALL_DATA   = [
     "notes": "This role requires proficiency in Go and hands-on experience building and maintaining production instrumentation services at scale \u2014 neither of which the candidate demonstrates. The candidate is a new grad with project-level experience in Java, Python, and JavaScript, which does not align with the Golang-specific and production-systems focus of this intermediate-level role. Additionally, the position is located in India while the candidate is based in Monroe, LA, adding a geographical mismatch."
   }
 ];
-const STATS      = {"total": 3, "applied": 0, "skipped": 3, "failed": 0, "avg": 12.3, "high": 13};
-let filtered     = [...ALL_DATA];
+const STATS    = {"total": 23, "applied": 0, "skipped": 23, "failed": 0, "avg": 14.3, "high": 23};
+let filtered   = [...ALL_DATA];
 let activeFilter = "all";
-let sortCol      = "created_at";
-let sortDir      = "desc";
+let sortCol = "created_at", sortDir = "desc";
 
-// ── Stats bar ──────────────────────────────────────────────────────────────
+// ── Stats ──────────────────────────────────────────────────────────────────
 function renderStats() {
-  const el = document.getElementById("statsBar");
-  const cards = [
-    { label: "Total",    value: STATS.total,   cls: "white"  },
-    { label: "Applied",  value: STATS.applied, cls: "green"  },
-    { label: "Skipped",  value: STATS.skipped, cls: "yellow" },
-    { label: "Failed",   value: STATS.failed,  cls: "red"    },
-    { label: "Avg Score",value: STATS.avg,     cls: "blue"   },
-    { label: "Top Score",value: STATS.high,    cls: "purple" },
-  ];
-  el.innerHTML = cards.map(c => `
-    <div class="stat">
-      <div class="stat-label">${c.label}</div>
-      <div class="stat-value ${c.cls}">${c.value}</div>
-    </div>`).join("");
+  document.getElementById("statsBar").innerHTML = [
+    {l:"Total",    v:STATS.total,   c:"white" },
+    {l:"Applied",  v:STATS.applied, c:"green" },
+    {l:"Skipped",  v:STATS.skipped, c:"yellow"},
+    {l:"Failed",   v:STATS.failed,  c:"red"   },
+    {l:"Avg Score",v:STATS.avg,     c:"blue"  },
+    {l:"Top Score",v:STATS.high,    c:"purple"},
+  ].map(x=>`<div class="stat"><div class="stat-label">${x.l}</div><div class="stat-value ${x.c}">${x.v}</div></div>`).join("");
 }
 
-// ── Filter buttons ─────────────────────────────────────────────────────────
+// ── Filters ────────────────────────────────────────────────────────────────
 function renderFilterBtns() {
-  const wrap = document.getElementById("filterBtns");
-  const statuses = ["all", "applied", "skipped", "failed", "pending"];
-  wrap.innerHTML = statuses.map(s => `
-    <button class="filter-btn ${s === activeFilter ? 'active' : ''}"
-            onclick="setFilter('${s}')">${s.charAt(0).toUpperCase() + s.slice(1)}</button>
-  `).join("");
+  document.getElementById("filterBtns").innerHTML =
+    ["all","applied","skipped","failed","pending"].map(s=>
+      `<button class="filter-btn${s===activeFilter?' active':''}" onclick="setFilter('${s}')">${s[0].toUpperCase()+s.slice(1)}</button>`
+    ).join("");
 }
+function setFilter(s){activeFilter=s;renderFilterBtns();applyFilters();}
 
-function setFilter(s) {
-  activeFilter = s;
-  renderFilterBtns();
-  applyFilters();
-}
-
-// ── Filtering + search ─────────────────────────────────────────────────────
+// ── Filter + sort ──────────────────────────────────────────────────────────
 function applyFilters() {
   const q = document.getElementById("searchInput").value.toLowerCase();
   filtered = ALL_DATA.filter(r => {
     if (activeFilter !== "all" && r.status !== activeFilter) return false;
-    if (!q) return true;
-    return (r.title + r.company + r.location + r.source).toLowerCase().includes(q);
+    return !q || (r.title+r.company+r.location+r.source).toLowerCase().includes(q);
   });
   sortFiltered();
   renderTable();
+  renderCards();
 }
-
-// ── Sorting ────────────────────────────────────────────────────────────────
 function sortBy(col) {
-  if (sortCol === col) sortDir = sortDir === "asc" ? "desc" : "asc";
-  else { sortCol = col; sortDir = col === "match_score" || col === "created_at" ? "desc" : "asc"; }
-  document.querySelectorAll("thead th").forEach(th => {
-    th.classList.remove("asc", "desc");
-    if (th.dataset.col === col) th.classList.add(sortDir);
+  if (sortCol===col) sortDir = sortDir==="asc"?"desc":"asc";
+  else { sortCol=col; sortDir=(col==="match_score"||col==="created_at")?"desc":"asc"; }
+  document.querySelectorAll("thead th").forEach(th=>{
+    th.classList.remove("asc","desc");
+    if(th.dataset.col===col) th.classList.add(sortDir);
   });
-  sortFiltered();
-  renderTable();
+  sortFiltered(); renderTable(); renderCards();
 }
-
 function sortFiltered() {
-  filtered.sort((a, b) => {
-    let va = a[sortCol] ?? "", vb = b[sortCol] ?? "";
-    if (typeof va === "number") return sortDir === "asc" ? va - vb : vb - va;
-    va = String(va).toLowerCase(); vb = String(vb).toLowerCase();
-    if (va < vb) return sortDir === "asc" ? -1 : 1;
-    if (va > vb) return sortDir === "asc" ?  1 : -1;
-    return 0;
+  filtered.sort((a,b)=>{
+    let va=a[sortCol]??"", vb=b[sortCol]??"";
+    if(typeof va==="number") return sortDir==="asc"?va-vb:vb-va;
+    va=String(va).toLowerCase(); vb=String(vb).toLowerCase();
+    return sortDir==="asc"?(va<vb?-1:va>vb?1:0):(va>vb?-1:va<vb?1:0);
   });
 }
 
-// ── Table rendering ────────────────────────────────────────────────────────
-function scoreClass(s) {
-  if (s >= 75) return "high";
-  if (s >= 50) return "mid";
-  return "low";
+// ── Helpers ────────────────────────────────────────────────────────────────
+function sc(s){return s>=75?"high":s>=50?"mid":"low";}
+function fd(d){if(!d)return"—";try{return new Date(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});}catch{return d;}}
+function esc(s){if(!s)return"";return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+
+function detailHTML(r) {
+  return `<div class="detail-grid">
+    <div>
+      <div class="field"><div class="field-label">Job Link</div>
+        <div class="field-value"><a href="${r.job_url}" target="_blank">Open posting</a></div></div>
+      <div class="field"><div class="field-label">Recommendation</div>
+        <div class="field-value">${esc(r.recommendation)||"—"}</div></div>
+      <div class="field"><div class="field-label">Applied</div>
+        <div class="field-value">${r.applied_at?fd(r.applied_at):"—"}</div></div>
+    </div>
+    <div>
+      <div class="field"><div class="field-label">Salary</div>
+        <div class="field-value">${esc(r.salary)||"—"}</div></div>
+      <div class="field"><div class="field-label">Location</div>
+        <div class="field-value">${esc(r.location)||"—"}</div></div>
+      <div class="field"><div class="field-label">Notes</div>
+        <div class="field-value">${esc(r.notes)||"—"}</div></div>
+    </div>
+  </div>`;
 }
 
-function fmtDate(d) {
-  if (!d) return "—";
-  try { return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" }); }
-  catch { return d; }
-}
-
+// ── Desktop table ──────────────────────────────────────────────────────────
 function renderTable() {
   const tbody = document.getElementById("tableBody");
   if (!filtered.length) {
-    tbody.innerHTML = `<tr><td colspan="7"><div class="no-results">No applications match your filter.</div></td></tr>`;
-    document.getElementById("footer").textContent = "";
+    tbody.innerHTML=`<tr><td colspan="7"><div class="no-results">No applications match.</div></td></tr>`;
+    document.getElementById("footer").textContent="";
     return;
   }
-
-  tbody.innerHTML = "";
-  filtered.forEach((r, i) => {
-    const tr = document.createElement("tr");
-    tr.id = "row-" + i;
-    tr.innerHTML = `
-      <td>
-        <div class="cell-title">
-          <a href="${r.job_url}" target="_blank" onclick="event.stopPropagation()">${esc(r.title) || "—"}</a>
-        </div>
-      </td>
-      <td class="cell-company">${esc(r.company) || "—"}</td>
-      <td>
-        <div class="cell-location">${esc(r.location) || "—"}</div>
-        ${r.salary ? `<div class="cell-salary">${esc(r.salary)}</div>` : ""}
-      </td>
-      <td><span class="score ${scoreClass(r.match_score)}">${r.match_score}</span></td>
+  tbody.innerHTML="";
+  filtered.forEach((r,i)=>{
+    const tr=document.createElement("tr");
+    tr.id="row-"+i;
+    tr.innerHTML=`
+      <td><div class="cell-title"><a href="${r.job_url}" target="_blank" onclick="event.stopPropagation()">${esc(r.title)||"—"}</a></div></td>
+      <td><div class="cell-title" style="font-weight:400">${esc(r.company)||"—"}</div>
+          <div class="cell-sub">${esc(r.location)||""}</div></td>
+      <td><div class="cell-sub">${esc(r.location)||"—"}</div>
+          ${r.salary?`<div class="cell-sub">${esc(r.salary)}</div>`:""}</td>
+      <td><span class="score ${sc(r.match_score)}">${r.match_score}</span></td>
       <td><span class="badge ${r.status}">${r.status}</span></td>
-      <td><span class="source-tag">${esc(r.source) || "—"}</span></td>
-      <td style="color:var(--muted);font-size:12px;">${fmtDate(r.created_at)}</td>
-    `;
-    tr.onclick = () => toggleDetail(i, r, tr);
+      <td><span class="source-tag">${esc(r.source)||"—"}</span></td>
+      <td style="color:var(--muted);font-size:12px;">${fd(r.created_at)}</td>`;
+    tr.onclick=()=>toggleTableRow(i,r,tr);
     tbody.appendChild(tr);
-
-    // placeholder detail row
-    const detailTr = document.createElement("tr");
-    detailTr.id = "detail-" + i;
-    detailTr.className = "detail-row";
-    detailTr.style.display = "none";
-    detailTr.innerHTML = `<td colspan="7"></td>`;
-    tbody.appendChild(detailTr);
+    const det=document.createElement("tr");
+    det.id="det-"+i; det.className="detail-row"; det.style.display="none";
+    det.innerHTML=`<td colspan="7"></td>`;
+    tbody.appendChild(det);
   });
-
-  const n = filtered.length;
-  document.getElementById("footer").textContent =
-    `Showing ${n} of ${ALL_DATA.length} application${ALL_DATA.length !== 1 ? "s" : ""}.`;
+  document.getElementById("footer").textContent=
+    `Showing ${filtered.length} of ${ALL_DATA.length} application${ALL_DATA.length!==1?"s":""}.`;
 }
 
-function toggleDetail(i, r, tr) {
-  const det = document.getElementById("detail-" + i);
-  const open = det.style.display !== "none";
-  // Close all
-  document.querySelectorAll(".detail-row").forEach(d => d.style.display = "none");
-  document.querySelectorAll("tbody tr:not(.detail-row)").forEach(t => t.classList.remove("expanded"));
-  if (open) return;
-  tr.classList.add("expanded");
-  det.style.display = "";
-  det.querySelector("td").innerHTML = `
-    <div class="detail-inner">
-      <div class="detail-grid">
-        <div>
-          <div class="field"><div class="field-label">Job URL</div>
-            <div class="field-value"><a href="${r.job_url}" target="_blank">${esc(r.job_url)}</a></div></div>
-          <div class="field"><div class="field-label">Recommendation</div>
-            <div class="field-value">${esc(r.recommendation) || "—"}</div></div>
-          <div class="field"><div class="field-label">Applied</div>
-            <div class="field-value">${r.applied_at ? fmtDate(r.applied_at) : "—"}</div></div>
+function toggleTableRow(i,r,tr) {
+  const det=document.getElementById("det-"+i);
+  const open=det.style.display!=="none";
+  document.querySelectorAll(".detail-row").forEach(d=>d.style.display="none");
+  document.querySelectorAll("tbody tr:not(.detail-row)").forEach(t=>t.classList.remove("expanded"));
+  if(open) return;
+  tr.classList.add("expanded"); det.style.display="";
+  det.querySelector("td").innerHTML=`<div class="detail-inner">${detailHTML(r)}</div>`;
+}
+
+// ── Mobile cards ───────────────────────────────────────────────────────────
+function renderCards() {
+  const list = document.getElementById("cardList");
+  if (!filtered.length) {
+    list.innerHTML=`<div class="no-results">No applications match.</div>`;
+    return;
+  }
+  list.innerHTML="";
+  filtered.forEach((r,i)=>{
+    const card=document.createElement("div");
+    card.className="card"; card.id="card-"+i;
+    card.innerHTML=`
+      <div class="card-main">
+        <div class="card-top">
+          <div class="card-title"><a href="${r.job_url}" target="_blank" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none">${esc(r.title)||"—"}</a></div>
+          <span class="card-chevron">⌄</span>
         </div>
-        <div>
-          <div class="field"><div class="field-label">Salary</div>
-            <div class="field-value">${esc(r.salary) || "—"}</div></div>
-          <div class="field"><div class="field-label">Notes</div>
-            <div class="field-value">${esc(r.notes) || "—"}</div></div>
-          <div class="field"><div class="field-label">Seen</div>
-            <div class="field-value">${fmtDate(r.created_at)}</div></div>
+        <div class="card-company">${esc(r.company)||"—"}</div>
+        <div class="card-row">
+          <span class="score ${sc(r.match_score)}">${r.match_score}</span>
+          <span class="badge ${r.status}">${r.status}</span>
+          <span class="source-tag">${esc(r.source)||"—"}</span>
+          <span style="color:var(--muted);font-size:12px;">${fd(r.created_at)}</span>
         </div>
       </div>
-    </div>
-  `;
-}
-
-function esc(s) {
-  if (!s) return "";
-  return String(s)
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+      <div class="card-detail">${detailHTML(r)}</div>`;
+    card.onclick=(e)=>{
+      if(e.target.tagName==="A") return;
+      const isOpen=card.classList.contains("open");
+      document.querySelectorAll(".card.open").forEach(c=>c.classList.remove("open"));
+      if(!isOpen) card.classList.add("open");
+    };
+    list.appendChild(card);
+  });
 }
 
 // ── Init ───────────────────────────────────────────────────────────────────
