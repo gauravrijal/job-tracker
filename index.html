@@ -143,7 +143,7 @@
 <header>
   <div style="max-width:1300px;margin:0 auto;">
     <h1>Gaurav's Job Applications</h1>
-    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-05-27 04:33 AM CDT</p>
+    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-05-27 04:49 AM CDT</p>
   </div>
 </header>
 
@@ -184,6 +184,51 @@
 
 <script>
 const ALL_DATA = [
+  {
+    "id": 26,
+    "title": "Tech Operations Associate, New Grad (Mexico)",
+    "company": "Stripe",
+    "location": "MX-Mexico City",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 42,
+    "recommendation": "Borderline",
+    "status": "skipped",
+    "job_url": "https://stripe.com/jobs/search?gh_jid=7718947",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:48:54.470596",
+    "notes": "Gaurav meets the graduation timeline requirement and has demonstrated SQL knowledge and analytical skills through his CS coursework and projects. However, this role is a Tech Operations/Support Associate based in Mexico City, focused on troubleshooting user issues, process improvement, and operations \u2014 not software engineering \u2014 and Gaurav's profile is oriented toward software development. The most significant barrier is that the role requires physical presence in Mexico City, and Gaurav is located in Monroe, LA with no indication of willingness or authorization to relocate internationally."
+  },
+  {
+    "id": 25,
+    "title": "Operations Associate, New Grad (Mexico)",
+    "company": "Stripe",
+    "location": "MX-Mexico City",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 28,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://stripe.com/jobs/search?gh_jid=7544547",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:48:44.238677",
+    "notes": "While the candidate meets the new-grad timing requirement and demonstrates some analytical and problem-solving skills, this role is fundamentally an Operations Associate position in Mexico City focused on Risk, Product Support, and Financial Crimes \u2014 not a software engineering role. The candidate's profile is entirely software development-oriented, with no operations, customer support, fintech, or risk management experience. Additionally, the candidate is based in Monroe, LA (USA) and would need work authorization and likely Spanish language skills for the Mexico City office."
+  },
+  {
+    "id": 24,
+    "title": "Junior Software Engineer, Reykjavik",
+    "company": "Asana",
+    "location": "Reykjav\u00edk",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 38,
+    "recommendation": "Borderline",
+    "status": "skipped",
+    "job_url": "https://www.asana.com/jobs/apply/7766762?gh_jid=7766762",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:48:34.304238",
+    "notes": "Gaurav is a strong new-grad candidate for general software engineering, but this role is specifically infrastructure/SRE-focused, requiring distributed systems knowledge, cloud operations (AWS), and infrastructure tooling that his profile does not demonstrate. His home server project shows some systems/Linux aptitude, which is a positive signal, but it falls well short of the cloud-scale infrastructure work Asana is hiring for. Additionally, the role is based in Reykjavik, Iceland, and Gaurav is located in Monroe, LA, representing a significant relocation barrier that is not addressed."
+  },
   {
     "id": 23,
     "title": "Senior Software Engineer - Bits AI SRE",
@@ -530,7 +575,7 @@ const ALL_DATA = [
     "notes": "This role requires proficiency in Go and hands-on experience building and maintaining production instrumentation services at scale \u2014 neither of which the candidate demonstrates. The candidate is a new grad with project-level experience in Java, Python, and JavaScript, which does not align with the Golang-specific and production-systems focus of this intermediate-level role. Additionally, the position is located in India while the candidate is based in Monroe, LA, adding a geographical mismatch."
   }
 ];
-const STATS    = {"total": 23, "applied": 0, "skipped": 23, "failed": 0, "avg": 14.3, "high": 23};
+const STATS    = {"total": 26, "applied": 0, "skipped": 26, "failed": 0, "avg": 16.8, "high": 42};
 let filtered   = [...ALL_DATA];
 let activeFilter = "all";
 let sortCol = "created_at", sortDir = "desc";
