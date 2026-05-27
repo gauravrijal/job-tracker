@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gaurav's Job Applications</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3348;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --accent: #6366f1;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+  header {
+    background: linear-gradient(135deg, #1e1f3a 0%, #12131f 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px 24px;
+  }
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #fff;
+  }
+  header p {
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 13px;
+  }
+
+  .main { max-width: 1300px; margin: 0 auto; padding: 28px 24px 0; }
+
+  /* Stats cards */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px 16px;
+  }
+  .stat-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .stat-value { font-size: 28px; font-weight: 700; line-height: 1; }
+  .stat-value.green  { color: var(--green); }
+  .stat-value.yellow { color: var(--yellow); }
+  .stat-value.red    { color: var(--red); }
+  .stat-value.blue   { color: var(--blue); }
+  .stat-value.purple { color: var(--purple); }
+  .stat-value.white  { color: #fff; }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 340px; }
+  .search-wrap input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 13px;
+    padding: 9px 12px 9px 36px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap .icon {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); pointer-events: none;
+  }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 6px 14px;
+    transition: all .15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Table */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 11px 14px;
+    text-align: left;
+    text-transform: uppercase;
+    user-select: none;
+    white-space: nowrap;
+  }
+  thead th:hover { color: var(--text); }
+  thead th .sort-icon { opacity: .35; margin-left: 4px; font-style: normal; }
+  thead th.asc  .sort-icon { opacity: 1; }
+  thead th.desc .sort-icon { opacity: 1; }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background .1s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr.expanded { background: var(--surface2); }
+  td { padding: 12px 14px; vertical-align: top; }
+  .cell-title { font-weight: 500; color: #fff; }
+  .cell-title a { color: inherit; text-decoration: none; }
+  .cell-title a:hover { color: var(--accent); }
+  .cell-company { color: var(--text); }
+  .cell-location { color: var(--muted); font-size: 12px; }
+  .cell-salary { color: var(--muted); font-size: 12px; }
+
+  .score {
+    display: inline-block;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    min-width: 36px;
+    padding: 2px 8px;
+    text-align: center;
+  }
+  .score.high   { background: rgba(34,197,94,.15);  color: var(--green);  }
+  .score.mid    { background: rgba(234,179,8,.15);   color: var(--yellow); }
+  .score.low    { background: rgba(239,68,68,.15);   color: var(--red);    }
+
+  .badge {
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    padding: 3px 10px;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+  .badge.applied { background: rgba(34,197,94,.15);  color: var(--green);  }
+  .badge.skipped { background: rgba(234,179,8,.15);   color: var(--yellow); }
+  .badge.failed  { background: rgba(239,68,68,.15);   color: var(--red);    }
+  .badge.pending { background: rgba(99,102,241,.15);  color: var(--accent); }
+
+  .source-tag {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    font-size: 11px;
+    padding: 2px 7px;
+  }
+
+  /* Expanded detail row */
+  .detail-row td { padding: 0; }
+  .detail-inner {
+    background: #13151f;
+    border-top: 1px solid var(--border);
+    padding: 16px 18px;
+  }
+  .detail-inner h4 { color: var(--muted); font-size: 11px; letter-spacing: .5px; margin-bottom: 8px; text-transform: uppercase; }
+  .detail-inner p  { color: var(--text); font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .detail-grid .field { margin-bottom: 12px; }
+  .field-label { color: var(--muted); font-size: 11px; margin-bottom: 3px; text-transform: uppercase; letter-spacing: .4px; }
+  .field-value { color: var(--text); font-size: 13px; }
+  .field-value a { color: var(--accent); text-decoration: none; }
+  .field-value a:hover { text-decoration: underline; }
+
+  .no-results {
+    color: var(--muted);
+    padding: 48px;
+    text-align: center;
+  }
+
+  footer {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 16px 24px 0;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div style="max-width:1300px;margin:0 auto;">
+    <h1>Gaurav's Job Applications</h1>
+    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-05-27 09:01 UTC</p>
+  </div>
+</header>
+
+<div class="main">
+  <div class="stats" id="statsBar"></div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="icon">🔍</span>
+      <input id="searchInput" placeholder="Search title, company, location…" oninput="applyFilters()" />
+    </div>
+    <div class="filters" id="filterBtns"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table id="appTable">
+      <thead>
+        <tr>
+          <th data-col="title"       onclick="sortBy('title')">Role <i class="sort-icon">↕</i></th>
+          <th data-col="company"     onclick="sortBy('company')">Company <i class="sort-icon">↕</i></th>
+          <th data-col="location"    onclick="sortBy('location')">Location <i class="sort-icon">↕</i></th>
+          <th data-col="match_score" onclick="sortBy('match_score')">Score <i class="sort-icon">↕</i></th>
+          <th data-col="status"      onclick="sortBy('status')">Status <i class="sort-icon">↕</i></th>
+          <th data-col="source"      onclick="sortBy('source')">Source <i class="sort-icon">↕</i></th>
+          <th data-col="created_at"  onclick="sortBy('created_at')">Seen <i class="sort-icon">↕</i></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer id="footer"></footer>
+
+<script>
+const ALL_DATA   = [
+  {
+    "id": 3,
+    "title": "Intermediate Backend Engineer (C), Tenant Scale: Git",
+    "company": "Gitlab",
+    "location": "Remote, India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 13,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8497793002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:01:29.114319",
+    "notes": "This role is explicitly titled 'Intermediate Backend Engineer (C)' and requires deep expertise in C-language development, Git internals, and Gitaly (Go-based), targeting engineers with substantial professional experience contributing to systems-level open source projects. The candidate is a new grad (May 2026) with no C programming, no Go, no experience with Git internals or distributed storage systems, and no upstream open source contribution history. Additionally, the role is located in India while the candidate is based in Louisiana, USA, creating a geographic mismatch."
+  },
+  {
+    "id": 2,
+    "title": "Backend Engineer, Analytics Instrumentation (Golang)",
+    "company": "Gitlab",
+    "location": "India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 12,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8481929002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:01:21.720093",
+    "notes": "This role requires proficiency in Go and hands-on experience building and maintaining production backend services at scale \u2014 neither of which the candidate possesses. The candidate is a new-grad with no listed Go experience and only hackathon/personal project exposure, while the role demands intermediate-level engineering with architectural decision-making responsibilities, on-call duties for billing-critical systems, and cross-team technical leadership. The location mismatch (candidate in Louisiana, role based in India) adds an additional disqualifying factor."
+  },
+  {
+    "id": 1,
+    "title": "Backend Engineer, Analytics Instrumentation (Golang)",
+    "company": "Gitlab",
+    "location": "India",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 12,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/gitlab/jobs/8481922002",
+    "applied_at": "",
+    "created_at": "2026-05-27 09:01:12.059414",
+    "notes": "This role requires proficiency in Go and hands-on experience building and maintaining production instrumentation services at scale \u2014 neither of which the candidate demonstrates. The candidate is a new grad with project-level experience in Java, Python, and JavaScript, which does not align with the Golang-specific and production-systems focus of this intermediate-level role. Additionally, the position is located in India while the candidate is based in Monroe, LA, adding a geographical mismatch."
+  }
+];
+const STATS      = {"total": 3, "applied": 0, "skipped": 3, "failed": 0, "avg": 12.3, "high": 13};
+let filtered     = [...ALL_DATA];
+let activeFilter = "all";
+let sortCol      = "created_at";
+let sortDir      = "desc";
+
+// ── Stats bar ──────────────────────────────────────────────────────────────
+function renderStats() {
+  const el = document.getElementById("statsBar");
+  const cards = [
+    { label: "Total",    value: STATS.total,   cls: "white"  },
+    { label: "Applied",  value: STATS.applied, cls: "green"  },
+    { label: "Skipped",  value: STATS.skipped, cls: "yellow" },
+    { label: "Failed",   value: STATS.failed,  cls: "red"    },
+    { label: "Avg Score",value: STATS.avg,     cls: "blue"   },
+    { label: "Top Score",value: STATS.high,    cls: "purple" },
+  ];
+  el.innerHTML = cards.map(c => `
+    <div class="stat">
+      <div class="stat-label">${c.label}</div>
+      <div class="stat-value ${c.cls}">${c.value}</div>
+    </div>`).join("");
+}
+
+// ── Filter buttons ─────────────────────────────────────────────────────────
+function renderFilterBtns() {
+  const wrap = document.getElementById("filterBtns");
+  const statuses = ["all", "applied", "skipped", "failed", "pending"];
+  wrap.innerHTML = statuses.map(s => `
+    <button class="filter-btn ${s === activeFilter ? 'active' : ''}"
+            onclick="setFilter('${s}')">${s.charAt(0).toUpperCase() + s.slice(1)}</button>
+  `).join("");
+}
+
+function setFilter(s) {
+  activeFilter = s;
+  renderFilterBtns();
+  applyFilters();
+}
+
+// ── Filtering + search ─────────────────────────────────────────────────────
+function applyFilters() {
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  filtered = ALL_DATA.filter(r => {
+    if (activeFilter !== "all" && r.status !== activeFilter) return false;
+    if (!q) return true;
+    return (r.title + r.company + r.location + r.source).toLowerCase().includes(q);
+  });
+  sortFiltered();
+  renderTable();
+}
+
+// ── Sorting ────────────────────────────────────────────────────────────────
+function sortBy(col) {
+  if (sortCol === col) sortDir = sortDir === "asc" ? "desc" : "asc";
+  else { sortCol = col; sortDir = col === "match_score" || col === "created_at" ? "desc" : "asc"; }
+  document.querySelectorAll("thead th").forEach(th => {
+    th.classList.remove("asc", "desc");
+    if (th.dataset.col === col) th.classList.add(sortDir);
+  });
+  sortFiltered();
+  renderTable();
+}
+
+function sortFiltered() {
+  filtered.sort((a, b) => {
+    let va = a[sortCol] ?? "", vb = b[sortCol] ?? "";
+    if (typeof va === "number") return sortDir === "asc" ? va - vb : vb - va;
+    va = String(va).toLowerCase(); vb = String(vb).toLowerCase();
+    if (va < vb) return sortDir === "asc" ? -1 : 1;
+    if (va > vb) return sortDir === "asc" ?  1 : -1;
+    return 0;
+  });
+}
+
+// ── Table rendering ────────────────────────────────────────────────────────
+function scoreClass(s) {
+  if (s >= 75) return "high";
+  if (s >= 50) return "mid";
+  return "low";
+}
+
+function fmtDate(d) {
+  if (!d) return "—";
+  try { return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" }); }
+  catch { return d; }
+}
+
+function renderTable() {
+  const tbody = document.getElementById("tableBody");
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="no-results">No applications match your filter.</div></td></tr>`;
+    document.getElementById("footer").textContent = "";
+    return;
+  }
+
+  tbody.innerHTML = "";
+  filtered.forEach((r, i) => {
+    const tr = document.createElement("tr");
+    tr.id = "row-" + i;
+    tr.innerHTML = `
+      <td>
+        <div class="cell-title">
+          <a href="${r.job_url}" target="_blank" onclick="event.stopPropagation()">${esc(r.title) || "—"}</a>
+        </div>
+      </td>
+      <td class="cell-company">${esc(r.company) || "—"}</td>
+      <td>
+        <div class="cell-location">${esc(r.location) || "—"}</div>
+        ${r.salary ? `<div class="cell-salary">${esc(r.salary)}</div>` : ""}
+      </td>
+      <td><span class="score ${scoreClass(r.match_score)}">${r.match_score}</span></td>
+      <td><span class="badge ${r.status}">${r.status}</span></td>
+      <td><span class="source-tag">${esc(r.source) || "—"}</span></td>
+      <td style="color:var(--muted);font-size:12px;">${fmtDate(r.created_at)}</td>
+    `;
+    tr.onclick = () => toggleDetail(i, r, tr);
+    tbody.appendChild(tr);
+
+    // placeholder detail row
+    const detailTr = document.createElement("tr");
+    detailTr.id = "detail-" + i;
+    detailTr.className = "detail-row";
+    detailTr.style.display = "none";
+    detailTr.innerHTML = `<td colspan="7"></td>`;
+    tbody.appendChild(detailTr);
+  });
+
+  const n = filtered.length;
+  document.getElementById("footer").textContent =
+    `Showing ${n} of ${ALL_DATA.length} application${ALL_DATA.length !== 1 ? "s" : ""}.`;
+}
+
+function toggleDetail(i, r, tr) {
+  const det = document.getElementById("detail-" + i);
+  const open = det.style.display !== "none";
+  // Close all
+  document.querySelectorAll(".detail-row").forEach(d => d.style.display = "none");
+  document.querySelectorAll("tbody tr:not(.detail-row)").forEach(t => t.classList.remove("expanded"));
+  if (open) return;
+  tr.classList.add("expanded");
+  det.style.display = "";
+  det.querySelector("td").innerHTML = `
+    <div class="detail-inner">
+      <div class="detail-grid">
+        <div>
+          <div class="field"><div class="field-label">Job URL</div>
+            <div class="field-value"><a href="${r.job_url}" target="_blank">${esc(r.job_url)}</a></div></div>
+          <div class="field"><div class="field-label">Recommendation</div>
+            <div class="field-value">${esc(r.recommendation) || "—"}</div></div>
+          <div class="field"><div class="field-label">Applied</div>
+            <div class="field-value">${r.applied_at ? fmtDate(r.applied_at) : "—"}</div></div>
+        </div>
+        <div>
+          <div class="field"><div class="field-label">Salary</div>
+            <div class="field-value">${esc(r.salary) || "—"}</div></div>
+          <div class="field"><div class="field-label">Notes</div>
+            <div class="field-value">${esc(r.notes) || "—"}</div></div>
+          <div class="field"><div class="field-label">Seen</div>
+            <div class="field-value">${fmtDate(r.created_at)}</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function esc(s) {
+  if (!s) return "";
+  return String(s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+renderStats();
+renderFilterBtns();
+applyFilters();
+</script>
+</body>
+</html>
