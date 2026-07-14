@@ -143,7 +143,7 @@
 <header>
   <div style="max-width:1300px;margin:0 auto;">
     <h1>Gaurav's Job Applications</h1>
-    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-07-12 01:02 PM CDT</p>
+    <p>Powered by job-agent &nbsp;·&nbsp; Last exported: 2026-07-14 12:00 PM CDT</p>
   </div>
 </header>
 
@@ -184,6 +184,66 @@
 
 <script>
 const ALL_DATA = [
+  {
+    "id": 371,
+    "title": "Full Stack Engineer, Link",
+    "company": "Stripe",
+    "location": "US",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 22,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://stripe.com/jobs/search?gh_jid=8062305",
+    "applied_at": "",
+    "created_at": "2026-07-14 17:00:51.237584",
+    "notes": "The hard minimum requirement is 2\u201310+ years of industry software engineering experience (excluding internships/co-ops), which Gaurav as a May 2026 new grad cannot meet. While his project work demonstrates relevant full-stack skills (React, JavaScript, REST APIs) and genuine initiative (hackathon wins, AI integration), the role explicitly targets mid-to-senior engineers expected to mentor others and own critical production systems at global scale. The technical stack gap (no cloud, no gRPC/GraphQL, no payments domain experience) compounds the experience shortfall."
+  },
+  {
+    "id": 370,
+    "title": "Software Engineer, Workers Deploy & Config",
+    "company": "Cloudflare",
+    "location": "Austin, TX",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 32,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://boards.greenhouse.io/cloudflare/jobs/7377424?gh_jid=7377424",
+    "applied_at": "",
+    "created_at": "2026-07-14 17:00:42.838779",
+    "notes": "Gaurav is a promising new-grad candidate with solid fundamentals in web development and some Linux/networking exposure, but this role is clearly aimed at experienced engineers who can own production systems, participate in on-call rotations, and mentor others \u2014 responsibilities that presuppose years of professional experience. The primary technical requirement is production-grade Go, which is absent from his profile, and the distributed systems / observability stack (Kubernetes, Prometheus, Grafana) that underpins Cloudflare Workers is also entirely missing. His project work, while commendable for a student, does not demonstrate the scale or depth the role demands."
+  },
+  {
+    "id": 369,
+    "title": "Software Engineer - Network Platforms",
+    "company": "Cloudflare",
+    "location": "Austin, TX",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 18,
+    "recommendation": "Skip",
+    "status": "skipped",
+    "job_url": "https://boards.greenhouse.io/cloudflare/jobs/7541032?gh_jid=7541032",
+    "applied_at": "",
+    "created_at": "2026-07-14 17:00:33.215906",
+    "notes": "This role is a deeply specialized systems engineering position requiring Linux kernel development (especially eBPF), low-level network dataplane programming, and experience with large-scale distributed network infrastructure \u2014 none of which Gaurav has demonstrated. His background is firmly in full-stack web development and application-layer software (React, Spring Boot, JavaScript), with only surface-level Linux and networking exposure from a home server project. Even adjusting for new-grad status, the gap between his skill set and the core technical requirements of this role is severe."
+  },
+  {
+    "id": 368,
+    "title": "Software Engineer I, Entry-Level (Graduation Date: Fall 2025-Summer 2026)",
+    "company": "Doordashusa",
+    "location": "San Francisco",
+    "salary": "",
+    "source": "greenhouse",
+    "match_score": 52,
+    "recommendation": "Borderline",
+    "status": "skipped",
+    "job_url": "https://job-boards.greenhouse.io/doordashusa/jobs/7263610",
+    "applied_at": "",
+    "created_at": "2026-07-14 17:00:24.139007",
+    "notes": "Gaurav meets the educational and graduation-date requirements and demonstrates solid foundational skills in Java, Python, SQL, React, and OOP through coursework and projects. However, DoorDash explicitly requires at least 2 prior Software Engineering internships or equivalent work experience, and the candidate shows no internship history \u2014 this is a hard requirement and the single largest gap. The projects show initiative and technical breadth (AI integration, Linux/networking, real-time systems), which partially compensates, but they do not substitute for the professional work experience threshold DoorDash has set."
+  },
   {
     "id": 367,
     "title": "Software Engineer",
@@ -5690,7 +5750,7 @@ const ALL_DATA = [
     "notes": "This role requires proficiency in Go and hands-on experience building and maintaining production instrumentation services at scale \u2014 neither of which the candidate demonstrates. The candidate is a new grad with project-level experience in Java, Python, and JavaScript, which does not align with the Golang-specific and production-systems focus of this intermediate-level role. Additionally, the position is located in India while the candidate is based in Monroe, LA, adding a geographical mismatch."
   }
 ];
-const STATS    = {"total": 367, "applied": 0, "skipped": 367, "failed": 0, "avg": 28.9, "high": 72};
+const STATS    = {"total": 371, "applied": 0, "skipped": 371, "failed": 0, "avg": 28.9, "high": 72};
 let filtered   = [...ALL_DATA];
 let activeFilter = "all";
 let sortCol = "created_at", sortDir = "desc";
